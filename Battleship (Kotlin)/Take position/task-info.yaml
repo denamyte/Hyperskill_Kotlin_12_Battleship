@@ -288,6 +288,12 @@ files:
   - name: src/battleship/Menu.kt
     visible: true
     learner_created: true
+  - name: src/battleship/Utils.kt
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/30255#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Wed, 01 Nov 2023 20:46:31 UTC"
 record: -1
