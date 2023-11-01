@@ -2,7 +2,7 @@ package battleship
 
 class Board {
 
-    enum class Cells(private val mark: Char) {
+    enum class Cell(private val mark: Char) {
         Fog('~'),
         Ship('O'),
         Hit('X'),
@@ -21,15 +21,12 @@ class Board {
                                          Pair( 1, -1), Pair( 1, 0), Pair( 1, 1)
         )
 
-        private fun emptySea() = MutableList(10) { MutableList(10) { Cells.Fog } }
+        private fun emptySea() = MutableList(10) { MutableList(10) { Cell.Fog } }
     }
 
-    /** The living ship cells */
     private val shipCells: MutableMap<Crd, Ship> = mutableMapOf()
-    /** The hit ship cells */
-    private val hitCells: MutableMap<Crd, Ship> = mutableMapOf()
+    private val hitCells: MutableSet<Crd> = mutableSetOf()
     private val missCells: MutableSet<Crd> = mutableSetOf()
-    private val ships = mutableSetOf<Ship>()
 
     fun shipFits(ship: Ship): Boolean {
         for (crd in ship.crdView) if (isShipNearOrInCell(crd)) return false
@@ -42,15 +39,28 @@ class Board {
             .isNotEmpty()
 
     fun addShip(ship: Ship) {
-        ships.add(ship)
         shipCells.putAll(ship.crdView.map { crd -> crd to ship })
     }
 
-    private fun getWholeSea(): MutableList<MutableList<Cells>> =
+    private fun getWholeSea(): MutableList<MutableList<Cell>> =
         emptySea().also { sea ->
-            shipCells.keys.forEach { sea[it.first][it.second] = Cells.Ship }
-            hitCells.keys.forEach { sea[it.first][it.second] = Cells.Hit }
-            missCells.forEach { sea[it.first][it.second] = Cells.Miss }
+            shipCells.keys.forEach { sea[it.first][it.second] = Cell.Ship }
+            hitCells.forEach { sea[it.first][it.second] = Cell.Hit }
+            missCells.forEach { sea[it.first][it.second] = Cell.Miss }
+        }
+
+    fun move(crd: Crd): Cell =
+        when {
+            crd in shipCells -> {
+                val ship = shipCells.remove(crd)!!
+                hitCells.add(crd)
+                ship.hit(crd)
+                Cell.Ship
+            }
+            else -> {
+                missCells.add(crd)
+                Cell.Miss
+            }
         }
 
     override fun toString(): String {
