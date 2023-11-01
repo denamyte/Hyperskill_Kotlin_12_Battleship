@@ -1,5 +1,5 @@
 package battleship
 
 fun main() {
-    println("Hello World!")
+    println(Board())
 }

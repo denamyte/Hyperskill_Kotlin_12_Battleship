@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://cogniterra.org/media/attachments/lesson/28765/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Thu, 01 Jan 1970 00:00:00 UTC"
+update_date: "Wed, 01 Nov 2023 19:01:06 UTC"
 stages:
   - id: 2150
     step: 30255
@@ -100,14 +100,14 @@ topics:
     - title: String arrays
       theory_id: 11477
   2:
-    - title: Introduction to OOP
-      theory_id: 3614
     - title: If expression
       theory_id: 4625
     - title: Nullable and non-nullable types
       theory_id: 7613
     - title: Repeating blocks
       theory_id: 4643
+    - title: Introduction to OOP
+      theory_id: 3614
     - title: Declaring classes
       theory_id: 6200
     - title: Functions as objects
@@ -193,24 +193,32 @@ topics:
       theory_id: 4659
     - title: The concept of patterns
       theory_id: 3611
-    - title: Interfaces
-      theory_id: 9640
-    - title: Inheritance
-      theory_id: 9844
-    - title: Polymorphism
-      theory_id: 10027
     - title: Call stack
       theory_id: 11550
     - title: Scopes
       theory_id: 17116
+    - title: Nested and inner classes
+      theory_id: 14723
+    - title: "Scope functions: apply and also"
+      theory_id: 22608
+    - title: "Scope functions: let, run, and with"
+      theory_id: 22875
+    - title: Introduction to software architecture
+      theory_id: 15368
+    - title: Inheritance
+      theory_id: 9844
     - title: Inheritance
       theory_id: 7770
+    - title: Interfaces
+      theory_id: 9640
+    - title: Design principles
+      theory_id: 8956
+    - title: Polymorphism
+      theory_id: 10027
     - title: Overriding functions
       theory_id: 7884
     - title: Introduction to Interfaces
       theory_id: 18222
-    - title: Nested and inner classes
-      theory_id: 14723
     - title: Interface inheritance
       theory_id: 20218
     - title: Delegate
@@ -223,14 +231,6 @@ topics:
       theory_id: 10193
     - title: Data class
       theory_id: 8526
-    - title: "Scope functions: apply and also"
-      theory_id: 22608
-    - title: "Scope functions: let, run, and with"
-      theory_id: 22875
-    - title: Introduction to software architecture
-      theory_id: 15368
-    - title: Design principles
-      theory_id: 8956
     - title: Single Responsibility Principle
       theory_id: 8963
     - title: Object declarations

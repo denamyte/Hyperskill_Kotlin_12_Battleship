@@ -279,6 +279,15 @@ files:
       
       }
     learner_created: false
-feedback_link: https://hyperskill.org/projects/363/stages/2150/implement#comment
+  - name: src/battleship/Board.kt
+    visible: true
+    learner_created: true
+  - name: src/battleship/Ship.kt
+    visible: true
+    learner_created: true
+  - name: src/battleship/Menu.kt
+    visible: true
+    learner_created: true
+feedback_link: https://hyperskill.org/learn/step/30255#comment
 status: Unchecked
 record: -1
