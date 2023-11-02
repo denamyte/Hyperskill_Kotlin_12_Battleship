@@ -1,3 +1,8 @@
 content:
   - Default arguments
   - Set
+  - Nullable and non-nullable types
+  - For loop and arrays
+  - Mutable Set
+  - Iterators
+  - Test predicates  checking elements in collection

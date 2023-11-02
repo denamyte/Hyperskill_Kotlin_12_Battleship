@@ -1,0 +1,12 @@
+custom_name: "Test predicates: checking elements in collection"
+content:
+  - Theory
+  - Is it a palindrome list
+  - Every number is divisible by 3
+  - Which operations return true
+  - Has the spell been invoked
+  - Which definition is correct
+  - Benefits of Predicate Test
+  - A secret should always be a secret
+  - The right result is true
+  - Every number is even

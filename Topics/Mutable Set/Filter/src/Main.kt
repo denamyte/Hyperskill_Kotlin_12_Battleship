@@ -1,0 +1,1 @@
+fun evenFilter(numbers: Set<Int>) = numbers.filter { it and 1 == 0 }.toSet()

@@ -1,0 +1,24 @@
+type: choice
+is_multiple_choice: true
+options:
+  - text: An Iterator can be created only for a List or a Set
+  - text: You can use an Iterator to retrieve elements from a collection after passing
+      its last element
+  - text: An Iterator allows removing elements from a collection
+  - text: An Iterator has the forEach() function
+  - text: An Iterator allows you to sequentially obtain elements from a collection
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/20796#comment
+status: Solved
+record: -1
+custom_name: Comprehension
+local_check: false
