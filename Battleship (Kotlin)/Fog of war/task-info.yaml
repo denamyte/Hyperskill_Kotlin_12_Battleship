@@ -494,6 +494,217 @@ files:
           }
       }
     learner_created: false
+  - name: src/battleship/Utils.kt
+    visible: true
+    text: |-
+      package battleship
+      
+      import kotlin.math.abs
+      
+      typealias Crd = Pair<Int, Int>
+      
+      class Utils {
+          companion object {
+              val NAME_TO_SIZE_MAP = mapOf(
+                  "Aircraft Carrier" to 5,
+                  "Battleship" to 4,
+                  "Submarine" to 3,
+                  "Cruiser" to 3,
+                  "Destroyer" to 2,
+              )
+      
+              private val CRD_REGEX = "[A-J]([0-9]|10)".toRegex()
+      
+              fun isShipShapeWrong(crd1: Crd, crd2: Crd) = crd1.first != crd2.first && crd1.second != crd2.second
+      
+              fun isShipSizeWrong(name: String, crd1: Crd, crd2: Crd) =
+                  (crd1.first == crd2.first && abs(crd1.second - crd2.second) + 1 != NAME_TO_SIZE_MAP[name]) ||
+                          (crd1.second == crd2.second && abs(crd1.first - crd2.first) + 1 != NAME_TO_SIZE_MAP[name])
+      
+              fun isCrdValid(raw: String) = CRD_REGEX.matches(raw)
+      
+              fun parseDoubleCrd(raw: String): Pair<Crd, Crd> =
+                  raw.split(" ").let { parts ->
+                      return Pair(parseCrd(parts[0]), parseCrd(parts[1]))
+                  }
+      
+              fun parseCrd(part: String): Crd = Pair(part[0] - 'A', part.substring(1).toInt() - 1)
+          }
+      }
+    learner_created: true
+  - name: src/battleship/Board.kt
+    visible: true
+    text: |-
+      package battleship
+      
+      class Board {
+      
+          enum class Cell(private val mark: Char) {
+              Fog('~'),
+              Ship('O'),
+              Hit('X'),
+              Miss('M');
+      
+              override fun toString() = mark.toString()
+          }
+      
+          companion object {
+              private const val CAPTION = "  1 2 3 4 5 6 7 8 9 10\n"
+              private val SEA_ROW = "%s ".repeat(11).trim()
+              private val LETTERS = 'A'..'J'
+      
+              private val SHIFT_CELLS = listOf(Pair(-1, -1), Pair(-1, 0), Pair(-1, 1),
+                                               Pair( 0, -1), Pair( 0, 0), Pair( 0, 1),
+                                               Pair( 1, -1), Pair( 1, 0), Pair( 1, 1)
+              )
+      
+              private fun emptySea() = MutableList(10) { MutableList(10) { Cell.Fog } }
+          }
+      
+          private val shipCells: MutableMap<Crd, Ship> = mutableMapOf()
+          private val hitCells: MutableSet<Crd> = mutableSetOf()
+          private val missCells: MutableSet<Crd> = mutableSetOf()
+      
+          fun shipFits(ship: Ship): Boolean {
+              for (crd in ship.crdView) if (isShipNearOrInCell(crd)) return false
+              return true
+          }
+      
+          private fun isShipNearOrInCell(crd: Crd) =
+              SHIFT_CELLS.map { shift -> Pair(shift.first + crd.first, shift.second + crd.second) }
+                  .intersect(shipCells.keys)
+                  .isNotEmpty()
+      
+          fun addShip(ship: Ship) {
+              shipCells.putAll(ship.crdView.map { crd -> crd to ship })
+          }
+      
+          private fun getWholeSea(): MutableList<MutableList<Cell>> =
+              emptySea().also { sea ->
+                  shipCells.keys.forEach { sea[it.first][it.second] = Cell.Ship }
+                  hitCells.forEach { sea[it.first][it.second] = Cell.Hit }
+                  missCells.forEach { sea[it.first][it.second] = Cell.Miss }
+              }
+      
+          fun move(crd: Crd): Cell =
+              when {
+                  crd in shipCells -> {
+                      val ship = shipCells.remove(crd)!!
+                      hitCells.add(crd)
+                      ship.hit(crd)
+                      Cell.Ship
+                  }
+                  else -> {
+                      missCells.add(crd)
+                      Cell.Miss
+                  }
+              }
+      
+          override fun toString(): String {
+              val sea = getWholeSea()
+              return CAPTION +
+              LETTERS.mapIndexed { i, letter ->
+                  SEA_ROW.format(letter, *sea[i].toTypedArray())
+              }.joinToString("\n") + '\n'
+          }
+      }
+    learner_created: true
+  - name: src/battleship/Ship.kt
+    visible: true
+    text: |-
+      package battleship
+      
+      class Ship(val name: String, crd1: Crd, crd2: Crd) {
+      
+          private val coordinates = mutableSetOf<Crd>()
+          val crdView get() = coordinates.toSet()
+      
+          private val hits = mutableSetOf<Crd>()
+          val hitsView get() = hits.toSet()
+      
+          val dead get() = coordinates == hits
+      
+          init {
+              for (x in minOf(crd1.first, crd2.first)..maxOf(crd1.first, crd2.first)) {
+                  for (y in minOf(crd1.second, crd2.second)..maxOf(crd1.second, crd2.second))
+                      coordinates.add(Pair(x, y))
+              }
+          }
+      
+          fun hit(crd: Crd) {
+              if (crd !in coordinates) throw IllegalArgumentException("Wrong coordinate for this ship!")
+              hits.add(crd)
+          }
+      }
+    learner_created: true
+  - name: src/battleship/Menu.kt
+    visible: true
+    text: |-
+      package battleship
+      
+      class Menu {
+          private val board = Board()
+      
+          fun run() {
+              placeShips()
+              takeShot()
+          }
+      
+          private fun placeShips() {
+              println(board)
+      
+              Utils.NAME_TO_SIZE_MAP.forEach { (name, size) ->
+                  println("Enter the coordinates of the $name ($size cells):\n")
+      
+                  while (true) {
+                      val raw = readln()
+                      println()
+                      val (crd1, crd2) = Utils.parseDoubleCrd(raw)
+                      when {
+                          Utils.isShipShapeWrong(crd1, crd2) ->
+                              println("Error! Wrong ship location! Try again:\n")
+      
+                          Utils.isShipSizeWrong(name, crd1, crd2) ->
+                              println("Error! Wrong length of the $name! Try again:\n")
+      
+                          else -> {
+                              val ship = Ship(name, crd1, crd2)
+                              if (!board.shipFits(ship))
+                                  println("Error! You placed it too close to another one. Try again:\n")
+                              else {
+                                  board.addShip(ship)
+                                  break
+                              }
+                          }
+                      }
+                  }
+                  println(board)
+              }
+          }
+      
+          private fun takeShot() {
+              println("The game starts!\n")
+              println(board)
+              println("Take a shot!\n")
+              while (true) {
+                  val raw = readln()
+                  println()
+                  if (!Utils.isCrdValid(raw)) {
+                      println("Error! You entered the wrong coordinates! Try again:\n")
+                      continue
+                  }
+                  val crd = Utils.parseCrd(raw)
+                  val move = board.move(crd)
+                  println(board)
+                  when (move) {
+                      Board.Cell.Ship -> println("You hit a ship!")
+                      else -> println("You missed!")
+                  }
+                  break
+              }
+          }
+      }
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/30257#comment
 status: Unchecked
 record: -1

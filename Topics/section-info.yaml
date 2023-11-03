@@ -6,3 +6,6 @@ content:
   - Mutable Set
   - Iterators
   - Test predicates  checking elements in collection
+  - Mapping transformation
+  - Aggregate operations on collections
+  - Retrieve collection parts

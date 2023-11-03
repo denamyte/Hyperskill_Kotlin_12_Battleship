@@ -1,0 +1,22 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |-
+      class Spell(val name: String, val power: Int)
+      
+      fun main() {
+          val input = readln().split(" ")
+          val spells = input.map { Spell(it.split("-")[0], it.split("-")[1].toInt()) }
+      
+          // write your code here
+      
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/24379#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Fri, 03 Nov 2023 23:39:00 UTC"
+record: -1
+submission_language: kotlin

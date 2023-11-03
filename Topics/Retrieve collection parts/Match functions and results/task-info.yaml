@@ -1,0 +1,32 @@
+type: matching
+captions:
+  - drop()
+  - slice()
+  - windowed()
+  - chunked()
+  - take()
+options:
+  - Returns a list of "snapshots" of the window of the given size
+  - Returns a collection without the first n elements
+  - Returns a list or lists of items with the length defined by the argument
+  - Returns a list of the collection elements with given indices
+  - Returns a collection with the first n elements
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/24370#comment
+status: Solved
+record: -1
+ordering:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
