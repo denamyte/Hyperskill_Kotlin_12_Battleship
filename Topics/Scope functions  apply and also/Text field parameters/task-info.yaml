@@ -1,0 +1,24 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |-
+      data class TextField(
+          var text: String = "Hello!",
+          var textSize: Int = 12,
+          var fontFamily: String = "Roboto"
+      )
+      
+      fun main() {
+          val textField = TextField()
+      
+          textField // Write your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/22615#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sat, 04 Nov 2023 19:37:28 UTC"
+record: -1
+submission_language: kotlin

@@ -9,3 +9,6 @@ content:
   - Mapping transformation
   - Aggregate operations on collections
   - Retrieve collection parts
+  - Repeating blocks
+  - Scope functions  apply and also
+  - "Scope functions  let, run, and with"

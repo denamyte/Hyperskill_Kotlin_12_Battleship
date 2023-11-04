@@ -1,0 +1,28 @@
+type: table
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/22609#comment
+status: Solved
+record: -1
+rows:
+  - also
+  - apply
+columns:
+  - Returns context object
+  - Context object as it
+  - Context object as this
+selected:
+  - - false
+    - false
+    - false
+  - - false
+    - false
+    - false
