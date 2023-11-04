@@ -9,7 +9,7 @@ class Menu {
     }
 
     private fun placeShips() {
-        println(board)
+        println(board.print(fog = false))
 
         Utils.NAME_TO_SIZE_MAP.forEach { (name, size) ->
             println("Enter the coordinates of the $name ($size cells):\n")
@@ -36,13 +36,13 @@ class Menu {
                     }
                 }
             }
-            println(board)
+            println(board.print(fog = false))
         }
     }
 
     private fun takeShot() {
         println("The game starts!\n")
-        println(board)
+        println(board.print())
         println("Take a shot!\n")
         while (true) {
             val raw = readln()
@@ -53,11 +53,12 @@ class Menu {
             }
             val crd = Utils.parseCrd(raw)
             val move = board.move(crd)
-            println(board)
+            println(board.print())
             when (move) {
-                Board.Cell.Ship -> println("You hit a ship!")
-                else -> println("You missed!")
+                Board.Cell.Ship -> println("You hit a ship!\n")
+                else -> println("You missed!\n")
             }
+            println(board.print(fog = false))
             break
         }
     }

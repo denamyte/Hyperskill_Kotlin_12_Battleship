@@ -42,32 +42,33 @@ class Board {
         shipCells.putAll(ship.crdView.map { crd -> crd to ship })
     }
 
-    private fun getWholeSea(): MutableList<MutableList<Cell>> =
+    private fun getWholeSea(fog: Boolean = true): MutableList<MutableList<Cell>> =
         emptySea().also { sea ->
-            shipCells.keys.forEach { sea[it.first][it.second] = Cell.Ship }
+            if (!fog) shipCells.keys.forEach { sea[it.first][it.second] = Cell.Ship }
             hitCells.forEach { sea[it.first][it.second] = Cell.Hit }
             missCells.forEach { sea[it.first][it.second] = Cell.Miss }
         }
 
     fun move(crd: Crd): Cell =
         when {
-            crd in shipCells -> {
-                val ship = shipCells.remove(crd)!!
-                hitCells.add(crd)
-                ship.hit(crd)
-                Cell.Ship
-            }
-            else -> {
-                missCells.add(crd)
-                Cell.Miss
-            }
+            crd in shipCells -> Cell.Ship
+                .also {
+                    val ship = shipCells.remove(crd)!!
+                    hitCells.add(crd)
+                    ship.hit(crd)
+                }
+
+            else -> Cell.Miss
+                .also {
+                    missCells.add(crd)
+                }
         }
 
-    override fun toString(): String {
-        val sea = getWholeSea()
+    fun print(fog: Boolean = true): String {
+        val sea = getWholeSea(fog)
         return CAPTION +
-        LETTERS.mapIndexed { i, letter ->
-            SEA_ROW.format(letter, *sea[i].toTypedArray())
-        }.joinToString("\n") + '\n'
+                LETTERS.mapIndexed { i, letter ->
+                    SEA_ROW.format(letter, *sea[i].toTypedArray())
+                }.joinToString("\n") + '\n'
     }
 }
