@@ -5,11 +5,11 @@ class Menu {
 
     fun run() {
         placeShips()
-        takeShot()
+        shootLoop()
     }
 
     private fun placeShips() {
-        println(board.print(fog = false))
+        println(board.render(fog = false))
 
         Utils.NAME_TO_SIZE_MAP.forEach { (name, size) ->
             println("Enter the coordinates of the $name ($size cells):\n")
@@ -36,15 +36,19 @@ class Menu {
                     }
                 }
             }
-            println(board.print(fog = false))
+            println(board.render(fog = false))
         }
     }
 
-    private fun takeShot() {
+    private fun shootLoop() {
         println("The game starts!\n")
-        println(board.print())
+        println(board.render())
         println("Take a shot!\n")
-        while (true) {
+        shoot()
+    }
+
+    private fun shoot() {
+        while (board.notAllSunken()) {
             val raw = readln()
             println()
             if (!Utils.isCrdValid(raw)) {
@@ -53,13 +57,13 @@ class Menu {
             }
             val crd = Utils.parseCrd(raw)
             val move = board.move(crd)
-            println(board.print())
+            println(board.render())
             when (move) {
-                Board.Cell.Ship -> println("You hit a ship!\n")
-                else -> println("You missed!\n")
-            }
-            println(board.print(fog = false))
-            break
+                Board.MoveResult.Miss -> "You missed. Try again:\n"
+                Board.MoveResult.Hit -> "You hit a ship! Try again:\n"
+                Board.MoveResult.Sunken -> "You sank a ship! Specify a new target:\n"
+                Board.MoveResult.AllSunken -> "You sank the last ship. You won. Congratulations!"
+            }.let(::println)
         }
     }
 }

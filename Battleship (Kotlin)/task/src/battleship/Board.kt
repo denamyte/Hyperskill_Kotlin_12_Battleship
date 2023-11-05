@@ -11,6 +11,13 @@ class Board {
         override fun toString() = mark.toString()
     }
 
+    enum class MoveResult {
+        Miss,
+        Hit,
+        Sunken,
+        AllSunken
+    }
+
     companion object {
         private const val CAPTION = "  1 2 3 4 5 6 7 8 9 10\n"
         private val SEA_ROW = "%s ".repeat(11).trim()
@@ -49,22 +56,29 @@ class Board {
             missCells.forEach { sea[it.first][it.second] = Cell.Miss }
         }
 
-    fun move(crd: Crd): Cell =
-        when {
-            crd in shipCells -> Cell.Ship
-                .also {
-                    val ship = shipCells.remove(crd)!!
-                    hitCells.add(crd)
-                    ship.hit(crd)
+    fun move(crd: Crd): MoveResult =
+        when(crd) {
+            in shipCells -> {
+                val ship = shipCells.remove(crd)!!
+                hitCells += crd
+                when {
+                    // 1. not the last cell of the ship -> Hit
+                    // 2. the last cell of the ship -> Sunken
+                    // 3. the last ship is sunken -> AllSunken
+                    shipCells.values.any { it == ship } -> MoveResult.Hit
+                    shipCells.isNotEmpty() -> MoveResult.Sunken
+                    else -> MoveResult.AllSunken
                 }
-
-            else -> Cell.Miss
-                .also {
-                    missCells.add(crd)
-                }
+            }
+            in hitCells -> MoveResult.Hit
+            else -> MoveResult.Miss.also { missCells += crd }
         }
 
-    fun print(fog: Boolean = true): String {
+    fun notAllSunken(): Boolean {
+        return shipCells.isNotEmpty()
+    }
+
+    fun render(fog: Boolean = true): String {
         val sea = getWholeSea(fog)
         return CAPTION +
                 LETTERS.mapIndexed { i, letter ->
