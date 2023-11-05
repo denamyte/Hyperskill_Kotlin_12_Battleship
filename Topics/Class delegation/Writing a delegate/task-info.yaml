@@ -1,0 +1,28 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    highlight_level: NONE
+    text: |-
+      interface UserSettings {
+          var language: String
+          var theme: String
+      }
+      class UserSettingsImpl : UserSettings {
+          override var language: String = "English"
+          override var theme: String = "Light"
+      }
+      
+      class LoggingUserSettingsDelegate() {
+          // make your code here
+      }
+      
+      class UserSettingsWithLogging(userSettings: UserSettings) : UserSettings by LoggingUserSettingsDelegate(userSettings)
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/28048#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sun, 05 Nov 2023 17:59:43 UTC"
+record: -1
+submission_language: kotlin

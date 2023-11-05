@@ -1,0 +1,44 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    highlight_level: NONE
+    text: |-
+      // Do not change the code below!
+      
+      data class Color(val code: Int) {
+          override fun toString() = "$code"
+      }
+      
+      interface Listed {
+          val index: String
+      }
+      
+      interface Tabulated : Listed {
+          val row: Int
+          val column: Int
+          val dataType: String
+          val isEmpty: Boolean
+      
+          override val index: String
+      }
+      
+      interface Colored {
+          val color: Color
+      }
+      
+      // Do not change the code above!
+      
+      // You probably want to inherit from something...
+      
+      interface TableCell {
+          // Your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/20226#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sun, 05 Nov 2023 16:04:06 UTC"
+record: -1
+submission_language: kotlin

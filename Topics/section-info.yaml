@@ -12,3 +12,8 @@ content:
   - Repeating blocks
   - Scope functions  apply and also
   - "Scope functions  let, run, and with"
+  - Introduction to Interfaces
+  - Interface inheritance
+  - Delegate
+  - Class delegation
+  - Object expressions

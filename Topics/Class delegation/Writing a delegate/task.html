@@ -1,0 +1,14 @@
+<h2>Writing a delegate</h2>
+<div class="step-text">
+<p></p>
+<p>We have a <code class="language-kotlin">UserSettings</code> interface, which defines two settings: its <code class="language-kotlin">language</code> and <code class="language-kotlin">theme</code>. The <code class="language-kotlin">UserSettingsImpl</code> class implements this interface and stores the settings.<br/>
+You need to write an implementation of the <code class="language-kotlin">LoggingUserSettingsDelegate</code> class, which implements the <code class="language-kotlin">UserSettings</code> interface and delegates its functionality to the <code class="language-kotlin">userSettings</code> object. In this delegate, you must override the<code class="language-kotlin"> language</code> and <code class="language-kotlin">theme</code> properties by adding message output to the console when you change settings.</p>
+<pre><code class="language-kotlin">println("Language changed from ${userSettings.language} to $value")</code></pre>
+<p>and</p>
+<pre><code class="language-kotlin">println("Theme changed from ${userSettings.theme} to $value")</code></pre>
+<p><strong>Example output</strong></p>
+<pre><code class="language-no-highlight">Current language: English
+Current theme: Light
+Language changed from English to Spanish
+Theme changed from Light to Dark</code></pre><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br>
+</div>

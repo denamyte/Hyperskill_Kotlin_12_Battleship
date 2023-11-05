@@ -1,0 +1,42 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    highlight_level: NONE
+    text: |-
+      interface Auth {
+          fun login()
+          fun logout()
+      }
+      
+      class AdminAuth : Auth {
+          override fun login() {
+              println("Admin logged in.")
+          }
+      
+          override fun logout() {
+              println("Admin logged out.")
+          }
+      }
+      
+      class UserAuth : Auth {
+          override fun login() {
+              println("User logged in.")
+          }
+      
+          override fun logout() {
+              println("User logged out.")
+          }
+      }
+      
+      class SystemUser() {
+      // make your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/28049#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sun, 05 Nov 2023 18:08:32 UTC"
+record: -1
+submission_language: kotlin

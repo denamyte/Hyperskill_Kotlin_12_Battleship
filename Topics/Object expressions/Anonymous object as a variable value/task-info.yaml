@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: "No, an anonymous object cannot be assigned to a variable"
+  - text: "Yes, in any case"
+  - text: "Yes, but only if the variable type is explicitly specified"
+  - text: "Yes, but only if the anonymous object implements an interface"
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/28745#comment
+status: Solved
+record: -1
+local_check: false

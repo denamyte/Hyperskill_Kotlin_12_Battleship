@@ -1,0 +1,60 @@
+<h2>Implementing several interfaces in a class</h2>
+<div class="step-text">
+<p></p>
+<p>Suppose we're coding software that allows us to manage tables.  <br/>
+Say, we're given:</p>
+<pre><code class="language-kotlin">// Interface which allows us to index
+// any class that implements it
+interface Listed {
+    val index: String
+}
+
+// This interface derives from Listed, since
+// anything that is tabulated already has
+// an index, just a different one --
+// row and column instead of a number.
+interface Tabulated : Listed {
+    val row: Int
+    val column: Int
+    val dataType: String
+    val isEmpty: Boolean
+
+    override val index: String
+}
+
+// This interface allows us to store color
+// information in anything that implements it
+interface Colored {
+    val color: Color
+}</code></pre>
+<p>Your task is to complete the interface <code class="language-kotlin">TableCell</code>, which should derive from <code class="language-kotlin">Tabulated</code> and <code class="language-kotlin">Colored</code>, since we might want any cell in the table to have a color for nice data visualization. Basically, you need to create a property which returns index and color data about a table cell.</p>
+<p>Provide the interface with a property <code class="language-kotlin">info</code>, which should return (or <code class="language-kotlin">get()</code>) the info about <code class="language-kotlin">TableCell</code> in the following format:</p>
+<pre><code class="language-kotlin">// Code:
+// We need to test our interface, so let's create an implementation:
+class Cell(
+override val row: Int,   
+override val column: Int,   
+override val dataType: String,   
+override val isEmpty: Boolean,   
+override val color: Color) : TableCell  
+
+// Initialize colors:
+val red = Color(1)  
+val blue = Color(2)  
+val green = Color(3)  
+
+// Create colored cells
+val redCell = Cell(5, 2, "string", false, red)  
+val blueCell = Cell(2, 6, "string", false, blue)  
+val greenCell = Cell(1, 4, "string", false, green)  
+
+// Get their info!
+println(redCell.info)  
+println(blueCell.info)  
+println(greenCell.info)</code></pre>
+<pre><code class="language-kotlin">// Output
+
+2, 5; Color: 1
+6, 2; Color: 2
+4, 1; Color: 3</code></pre><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br>
+</div>
