@@ -1,0 +1,11 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    highlight_level: NONE
+    text: // write your data class here
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/20482#comment
+status: Solved
+record: -1
+submission_language: kotlin

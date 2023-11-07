@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Constructors-Creating_a_'Person'_class_with_name_and_age_properties" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Constructors/Creating a 'Person' class with name and age properties" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="12_Battleship" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Constructors/Creating a 'Person' class with name and age properties">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Constructors/Creating a 'Person' class with name and age properties/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Constructors/Creating a 'Person' class with name and age properties/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Topics/Constructors/Creating a 'Person' class with name and age properties/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

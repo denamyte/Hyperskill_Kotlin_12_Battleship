@@ -1,0 +1,30 @@
+<h2>Orders of displaying the strings</h2>
+<div class="step-text">
+<p></p>
+<p>Take a look at the following code with multiple threads:</p>
+<pre><code class="language-kotlin">fun main() {
+    println("Hello Main")
+
+    val helloThread2 = HelloThread2()
+    helloThread2.start()
+    
+    val helloThread1 = HelloThread1()
+    helloThread1.start()
+}
+
+class HelloThread1 : Thread() {
+    override fun run() {
+        println("Hello from Thread-1")
+        val helloThread2 = HelloThread2()
+        helloThread2.start()
+    }
+}
+
+class HelloThread2 : Thread() {
+    override fun run() {
+        Thread.sleep(1000)
+        println("Hello from Thread-2")
+    }
+}</code></pre>
+<p>Select all possible outputs:</p>
+</div>

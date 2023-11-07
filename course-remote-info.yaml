@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://cogniterra.org/media/attachments/lesson/28765/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Sun, 05 Nov 2023 21:16:19 UTC"
+update_date: "Tue, 07 Nov 2023 16:42:26 UTC"
 stages:
   - id: 2150
     step: 30255
@@ -32,9 +32,9 @@ topics:
       theory_id: 8739
     - title: Introduction to Kotlin
       theory_id: 4350
-    - title: Basic literals
+    - title: "Basic literals: numbers, strings and characters"
       theory_id: 4351
-    - title: Overview of the basic program
+    - title: Writing first program
       theory_id: 4362
     - title: Values and variables
       theory_id: 4371
@@ -106,7 +106,7 @@ topics:
       theory_id: 7613
     - title: Repeating blocks
       theory_id: 4643
-    - title: Introduction to OOP
+    - title: What is object-oriented programming
       theory_id: 3614
     - title: Declaring classes
       theory_id: 6200

@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: The main thread of an application always stops
+  - text: The current thread stops for 10 milliseconds
+  - text: The current thread stops for 10 clock signals of the processor
+  - text: The whole application stops for 10 seconds
+files:
+  - name: src/Main.kt
+    visible: true
+    text: |
+      // You can experiment here, it won’t be checked
+      
+      fun main(args: Array<String>) {
+        // put your code here
+      }
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/16201#comment
+status: Solved
+record: -1
+local_check: false

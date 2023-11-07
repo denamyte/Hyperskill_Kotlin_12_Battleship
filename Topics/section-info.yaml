@@ -18,3 +18,9 @@ content:
   - Class delegation
   - Object expressions
   - Thread as object
+  - Data class
+  - Constructors
+  - Member functions
+  - Custom threads
+  - Thread management
+  - Thread synchronization
