@@ -24,3 +24,5 @@ content:
   - Custom threads
   - Thread management
   - Thread synchronization
+  - For loop and lists
+  - Destructuring declarations
