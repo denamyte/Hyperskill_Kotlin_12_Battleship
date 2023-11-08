@@ -1,6 +1,6 @@
 package battleship
 
-class Board {
+class Board(val name: String) {
 
     enum class Cell(private val mark: Char) {
         Fog('~'),
@@ -83,6 +83,6 @@ class Board {
         return CAPTION +
                 LETTERS.mapIndexed { i, letter ->
                     SEA_ROW.format(letter, *sea[i].toTypedArray())
-                }.joinToString("\n") + '\n'
+                }.joinToString("\n")
     }
 }

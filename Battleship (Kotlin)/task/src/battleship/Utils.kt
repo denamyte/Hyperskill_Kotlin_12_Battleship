@@ -30,5 +30,9 @@ class Utils {
             }
 
         fun parseCrd(part: String): Crd = Pair(part[0] - 'A', part.substring(1).toInt() - 1)
+
+        fun printWithTrailingLines(msg: String, linesCount: Int = 1) {
+            println(msg).also { repeat(linesCount) { println() } }
+        }
     }
 }
