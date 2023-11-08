@@ -1,0 +1,14 @@
+type: code
+files:
+  - name: src/Main.kt
+    visible: true
+    text: "import java.math.BigDecimal\n\nfun main() {      \n    // write yor code\
+    \ here\n\n}"
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/14619#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Wed, 08 Nov 2023 19:26:59 UTC"
+record: -1
+submission_language: kotlin

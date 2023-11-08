@@ -26,3 +26,4 @@ content:
   - Thread synchronization
   - For loop and lists
   - Destructuring declarations
+  - BigDecimal
